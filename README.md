@@ -4,7 +4,7 @@ Internal employee operations hub + agentic AI copilot, built for Brainwave Scien
 The copilot answers questions, logs tasks, files leave, and drafts messages — and
 performs those actions inside the app via a lightweight function-calling pattern.
 
-## Architecture (the part worth showing the CTO)
+## Architecture
 
     Browser (public/index.html)  ──POST /api/chat──▶  Node server (server.js)  ──▶  Anthropic API
                                                        (holds API key, never the browser)
@@ -12,14 +12,10 @@ performs those actions inside the app via a lightweight function-calling pattern
 The API key lives only on the server. The client never sees it — the
 correct, reviewable pattern for production.
 
-## Run it (≈60 seconds)
 
 Requires **Node.js 18+** (for built-in fetch). Check with: `node -v`
 
 1. Set your Anthropic API key:
-
-       export ANTHROPIC_API_KEY=sk-ant-...        # macOS / Linux
-       setx ANTHROPIC_API_KEY "sk-ant-..."        # Windows (new terminal after)
 
 2. Start the server (no `npm install` needed — zero dependencies):
 

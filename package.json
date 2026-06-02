@@ -1,0 +1,8 @@
+{
+  "name": "neuradesk",
+  "version": "1.0.0",
+  "description": "Internal employee operations hub + agentic AI copilot for Brainwave Science",
+  "private": true,
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

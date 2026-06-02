@@ -113,6 +113,28 @@
   .scroll::-webkit-scrollbar{width:8px}.scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
 </style>
 
+
+<div id="loginWall" style="position:fixed;inset:0;background:#070b11;z-index:9999;display:flex;align-items:center;justify-content:center;font-family:Sora,system-ui,sans-serif;color:#e8f0f7;">
+  <div style="width:360px;background:#0e141d;border:1px solid #1d2735;border-radius:18px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <h2 style="margin:0 0 8px;font-family:Syne,system-ui,sans-serif;">NEURADESK Access</h2>
+    <p style="margin:0 0 20px;color:#7d8da6;font-size:13px;">Authorized demo access only.</p>
+
+    <label style="font-size:11px;color:#7d8da6;">Email</label>
+    <input id="loginEmail" type="email" placeholder="Enter email" style="margin:6px 0 14px;width:100%;padding:12px;border-radius:10px;border:1px solid #1d2735;background:#070b11;color:#e8f0f7;">
+
+    <label style="font-size:11px;color:#7d8da6;">Password</label>
+    <input id="loginPassword" type="password" placeholder="Enter password" style="margin:6px 0 14px;width:100%;padding:12px;border-radius:10px;border:1px solid #1d2735;background:#070b11;color:#e8f0f7;">
+
+    <button id="loginEnterBtn" style="width:100%;padding:12px;border:0;border-radius:10px;background:linear-gradient(135deg,#16f0c8,#7c8bff);color:#03130f;font-weight:700;cursor:pointer;">Enter Demo</button>
+
+    <p id="loginError" style="display:none;color:#ff6b8b;font-size:12px;margin-top:12px;">Invalid email or password.</p>
+  </div>
+
+  <div style="position:fixed;bottom:18px;left:0;right:0;text-align:center;color:#7d8da6;font-size:12px;letter-spacing:.2px;">
+    Build with Love In India 🇮🇳 by Abhishek S — Powered by Intelligence
+  </div>
+</div>
+
 <div class="app">
   <!-- SIDEBAR -->
   <aside class="side">
@@ -495,3 +517,35 @@ bubble('assistant',"Hi Abhishek 👋 I'm **NEURA**, your workspace agent. I can 
 sizeC(); window.addEventListener('resize',()=>{cx.setTransform(1,0,0,1,0,0);sizeC();});
 drawWave(); render();
 </script>
+
+
+<script>
+(function(){
+  function unlock(){
+    var wall = document.getElementById("loginWall");
+    if(wall) wall.style.display = "none";
+  }
+
+  window.addEventListener("load", function(){
+    if(localStorage.getItem("neuradesk_auth") === "yes"){
+      unlock();
+    }
+
+    var btn = document.getElementById("loginEnterBtn");
+    if(btn){
+      btn.addEventListener("click", function(){
+        var email = document.getElementById("loginEmail").value.trim().toLowerCase();
+        var pass = document.getElementById("loginPassword").value.trim();
+
+        if(email === "life@brainwavescience.com" && pass === "BWS@12345"){
+          localStorage.setItem("neuradesk_auth","yes");
+          unlock();
+        } else {
+          document.getElementById("loginError").style.display = "block";
+        }
+      });
+    }
+  });
+})();
+</script>
+
